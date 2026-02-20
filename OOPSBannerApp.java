@@ -1,13 +1,19 @@
 /**
  * OOPS Banner App
- * Use Case 1: Print literal text "OOPS"
- * @author Jebin
- * @version 1.0
+ * UC2: Display OOPS in large banner format
  */
 
 public class OOPSBannerApp {
 
     public static void main(String[] args) {
-        System.out.println("OOPS");
+
+        System.out.println(" *****     *****     *****     ***** ");
+        System.out.println("*     *   *     *   *     *   *     *");
+        System.out.println("*     *   *     *   *     *   *      ");
+        System.out.println("*     *   *     *   *****     *****  ");
+        System.out.println("*     *   *     *   *              * ");
+        System.out.println("*     *   *     *   *              * ");
+        System.out.println(" *****     *****    *         *****  ");
+
     }
 }
