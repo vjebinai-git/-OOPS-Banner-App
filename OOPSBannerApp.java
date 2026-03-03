@@ -1,25 +1,49 @@
+/**
+ * OOPS Banner App
+ * UC7: Store Character Pattern in an Inner Static Class
+ */
+
 public class OOPSBannerApp {
 
-    public static void main(String[] args) {
+    /**
+     * Inner Static Class to store character and pattern
+     */
+    static class CharacterPatternMap {
 
-        String[] banner = {
-            String.join(" ", getO()[0], getO()[0], getP()[0], getS()[0]),
-            String.join(" ", getO()[1], getO()[1], getP()[1], getS()[1]),
-            String.join(" ", getO()[2], getO()[2], getP()[2], getS()[2]),
-            String.join(" ", getO()[3], getO()[3], getP()[3], getS()[3]),
-            String.join(" ", getO()[4], getO()[4], getP()[4], getS()[4]),
-            String.join(" ", getO()[5], getO()[5], getP()[5], getS()[5]),
-            String.join(" ", getO()[6], getO()[6], getP()[6], getS()[6])
-        };
+        private char character;
+        private String[] pattern;
 
-        for (String line : banner) {
-            System.out.println(line);
+        public CharacterPatternMap(char character, String[] pattern) {
+            this.character = character;
+            this.pattern = pattern;
+        }
+
+        public char getCharacter() {
+            return character;
+        }
+
+        public String[] getPattern() {
+            return pattern;
         }
     }
 
-    // Helper method for O
-    static String[] getO() {
-        return new String[]{
+    /**
+     * Utility method to get pattern for a character
+     */
+    public static String[] getCharacterPattern(char ch, CharacterPatternMap[] maps) {
+        for (CharacterPatternMap map : maps) {
+            if (map.getCharacter() == ch) {
+                return map.getPattern();
+            }
+        }
+        return new String[7];
+    }
+
+    public static void main(String[] args) {
+
+        CharacterPatternMap[] maps = {
+
+            new CharacterPatternMap('O', new String[]{
                 " ***** ",
                 "*     *",
                 "*     *",
@@ -27,12 +51,9 @@ public class OOPSBannerApp {
                 "*     *",
                 "*     *",
                 " ***** "
-        };
-    }
+            }),
 
-    // Helper method for P
-    static String[] getP() {
-        return new String[]{
+            new CharacterPatternMap('P', new String[]{
                 " ***** ",
                 "*     *",
                 "*     *",
@@ -40,12 +61,9 @@ public class OOPSBannerApp {
                 "*      ",
                 "*      ",
                 "*      "
-        };
-    }
+            }),
 
-    // Helper method for S
-    static String[] getS() {
-        return new String[]{
+            new CharacterPatternMap('S', new String[]{
                 " ***** ",
                 "*      ",
                 "*      ",
@@ -53,6 +71,27 @@ public class OOPSBannerApp {
                 "      *",
                 "      *",
                 " ***** "
+            })
         };
+
+        String word = "OOPS";
+        StringBuilder[] banner = new StringBuilder[7];
+
+        for (int i = 0; i < 7; i++) {
+            banner[i] = new StringBuilder();
+        }
+
+        for (char ch : word.toCharArray()) {
+
+            String[] pattern = getCharacterPattern(ch, maps);
+
+            for (int i = 0; i < 7; i++) {
+                banner[i].append(pattern[i]).append("  ");
+            }
+        }
+
+        for (StringBuilder line : banner) {
+            System.out.println(line);
+        }
     }
-}
+}s
